@@ -25,6 +25,8 @@ async function getWordOfTheDay() {
         {
           title: `${wotdWord}!`,
           description: `
+          **Part of Speech**: ${wotdPartOfSpeech}
+          \n\n
           **Meaning 1**: ${wotdGloss1}
           \n\n
           **Meaning 2**: ${wotdGloss2}

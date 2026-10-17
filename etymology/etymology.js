@@ -12,7 +12,6 @@ async function getWordOfTheDay() {
     // Extract word details
     const wotd = response.data;
     const wotdWord = wotd.word.charAt(0).toUpperCase() + wotd.word.slice(1); // Capitalize word
-    const wotdAudio = wotd.audioUrl; // audio
     const wotdGloss1 = wotd.meanings[0].senses[0].glosses[0]; // glossary 1
     const wotdGloss2 = wotd.meanings[0].senses[1].glosses[0]; // glossary 2
     const wotdExamples = wotd.meanings[0].senses[0].examples[0]; // example sentence
@@ -25,10 +24,12 @@ async function getWordOfTheDay() {
         {
           title: `Meet ${wotdWord}!`,
           description: `
-          **Pronunciation**: ${wotdAudio}
           **Meaning 1**: ${wotdGloss1}
+          \n\n
           **Meaning 2**: ${wotdGloss2}
+          \n\n
           **Example**: ${wotdExamples}
+          \n\n
           **Etymology**: ${wotdEtimology}
           `,
           color: 0x1e90ff, // Optional: Embed color in hexadecimal

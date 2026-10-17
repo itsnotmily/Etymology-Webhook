@@ -6,17 +6,17 @@ on:
   workflow_dispatch: # Allows manual trigger
 
 jobs:
-  send-pokemon-notification:
+  send-wotd-notification:
     runs-on: ubuntu-latest
 
     steps:
     # Step 1: Checkout the repository
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v5
 
     # Step 2: Set up Node.js
     - name: Set up Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v5
       with:
         node-version: '24'
 

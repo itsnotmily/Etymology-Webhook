@@ -16,7 +16,7 @@ async function getWordOfTheDay() {
     const wotdGloss1 = wotd.meanings[0].senses[0].glosses[0]; // glossary 1
     const wotdGloss2 = wotd.meanings[0].senses[1].glosses[0]; // glossary 2
     const wotdExamples = wotd.meanings[0].senses[0].examples[0]; // example sentence
-    const wotdEtimology = wotd.meanings[0].etymology; // etymology
+    const wotdEtimology = wotd.meanings[0].etymologyText; // etymology
 
     // Create the message payload
     const discordPayload = {

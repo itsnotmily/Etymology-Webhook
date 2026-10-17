@@ -1,4 +1,4 @@
-name: Pokémon Discord Notification
+name: WOTD Discord Notification
 
 on:
   schedule:
@@ -23,9 +23,9 @@ jobs:
     # Step 3: Install Dependencies (from package.json)
     - name: Install Dependencies
       run: npm install
-      working-directory: ./pokemon
+      working-directory: ./etymology
     # Step 4: Run the script
-    - name: Run Pokémon Notification Script
+    - name: Run wotd Notification Script
       env:
         DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-      run: node pokemon/pokemon.js
+      run: node etymology/etymology.js

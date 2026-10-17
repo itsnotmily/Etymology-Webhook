@@ -26,13 +26,13 @@ async function getWordOfTheDay() {
           title: `📝Today's Word is ${wotdWord}!`,
           description: `
           **Part of Speech**: ${wotdPartOfSpeech}
-          \n
+          
           **Meaning 1**: ${wotdGloss1}
-          \n
+          
           **Meaning 2**: ${wotdGloss2}
-          \n
+          
           **Example**: ${wotdExamples}
-          \n
+          
           **Etymology**: ${wotdEtimology}
           `,
           color: 0x1e90ff, // Optional: Embed color in hexadecimal

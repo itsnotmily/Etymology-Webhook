@@ -1,6 +1,7 @@
 # **Automated Discord Webhook Messages Using an Etymology API**
 
 📚 A Node.js project designed to send a **Word of the Day with its etymology** to Discord channels via webhooks. Using an etymology API or dictionary data source, the project automatically shares a daily word, its definition, origin, and historical development. This repository is ideal for vocabulary building, language learning, and discovering the fascinating histories behind words.
+It uses https://api.suvankar.cc/ free api for getting the information
 
 ---
 
@@ -19,6 +20,7 @@
 
 1. **Fetch Word Data via API:**
    - Makes API calls to an etymology API or dictionary data source to retrieve information about a word.
+   - Uses https://api.suvankar.cc/ free api
    - Collects available details, such as the definition, language of origin, historical forms, and etymological notes.
    - Selects a word to feature as the Word of the Day.
 
@@ -37,135 +39,19 @@
 
 ---
 
-## **Setup Instructions**
-
-### Prerequisites
-
-- Node.js installed on your system.
-- A Discord webhook URL. Learn how to create one [here](https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks).
-- An etymology API or dictionary data source that provides word-origin information.
-- A GitHub repository for automated scheduling.
-
-### Local Development
-
-1. **Clone the Repository:**
-
-   ```bash
-   git clone https://github.com/your-username/Discord-Webhook-Sender.git
-   cd Discord-Webhook-Sender
-   ```
-
-2. **Navigate to the Word of the Day Directory:**
-
-   ```bash
-   cd word-of-the-day
-   ```
-
-3. **Configure Your Discord Webhook:**
-
-   Set the `DISCORD_WEBHOOK_URL` environment variable to your Discord webhook URL.
-
-   ```bash
-   # Linux/macOS
-   export DISCORD_WEBHOOK_URL="YOUR_DISCORD_WEBHOOK_URL"
-   ```
-
-   On Windows PowerShell:
-
-   ```powershell
-   $env:DISCORD_WEBHOOK_URL="YOUR_DISCORD_WEBHOOK_URL"
-   ```
-
-4. **Install Dependencies:**
-
-   ```bash
-   npm install axios
-   ```
-
-5. **Run the Script:**
-
-   ```bash
-   node word-of-the-day.js
-   ```
-
-   The script fetches a word and its available etymological information, formats the result, and sends it to your Discord channel.
-
----
-
-## **Automation via GitHub Actions**
-
-This project uses GitHub Actions to send a Word of the Day automatically.
-
-### 1. Configure the Schedule
-
-The workflow is defined in:
-
-```text
-.github/workflows/word-of-the-day.yml
-```
-
-Example workflow configuration:
-
-```yaml
-name: Daily Word of the Day
-
-on:
-  schedule:
-    - cron: '0 9 * * *'
-  workflow_dispatch:
-
-jobs:
-  send-word:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install dependencies
-        run: npm install axios
-
-      - name: Send Word of the Day
-        run: node word-of-the-day/word-of-the-day.js
-        env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-```
-
-**Note:** GitHub Actions cron schedules use UTC. The example runs at 09:00 UTC daily. Scheduled workflows can occasionally be delayed, and the workflow must be on the repository's default branch.
-
-### 2. Configure Your Webhook Secret
-
-1. Navigate to your GitHub repository.
-2. Open **Settings → Secrets and variables → Actions**.
-3. Create a repository secret named `DISCORD_WEBHOOK_URL`.
-4. Paste your Discord webhook URL into the secret value.
-
-The workflow will make this secret available to the script at runtime.
-
----
 
 ## **Example Discord Output**
 
-📚 **Word of the Day: Serendipity**
+📝 Today's Word is Exploration!
+Part of Speech: noun
 
-*Definition:* The occurrence of a fortunate discovery or event by chance.
+Meaning 1: The process of exploring.
 
-**Etymology:**
-- **Origin:** English
-- **Coined by:** Horace Walpole in 1754
-- **Historical background:** Inspired by *The Three Princes of Serendip*, a tale about characters who make unexpected discoveries through observation and good fortune.
+Meaning 2: The (pre-)mining process of finding and determining commercially viable ore deposits (after prospecting), also called mineral exploration.
 
-**Example:** "Finding that old book in a second-hand shop was pure serendipity."
+Example: By this time, largely inspired by The Railway Magazine, I had begun to spread my wings, and had started on a long career of railway exploration.
 
-🔗 **Explore further:** [Read more about the word](https://en.wiktionary.org/wiki/serendipity)
-
-*Discover a new word and its history every day!*
-
+Etymology: From Middle French exploration, from Latin exploratio. Morphologically explore + -ation.
 ---
 
 ## **Customization**

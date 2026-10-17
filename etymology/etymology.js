@@ -20,19 +20,19 @@ async function getWordOfTheDay() {
 
     // Create the message payload
     const discordPayload = {
-      content: `🎨 Today's word is **${wotdWord}**!`,
+      content: ``,
       embeds: [
         {
-          title: `${wotdWord}!`,
+          title: `📝Today's Word is ${wotdWord}!`,
           description: `
           **Part of Speech**: ${wotdPartOfSpeech}
-          \n\n
+          \n
           **Meaning 1**: ${wotdGloss1}
-          \n\n
+          \n
           **Meaning 2**: ${wotdGloss2}
-          \n\n
+          \n
           **Example**: ${wotdExamples}
-          \n\n
+          \n
           **Etymology**: ${wotdEtimology}
           `,
           color: 0x1e90ff, // Optional: Embed color in hexadecimal

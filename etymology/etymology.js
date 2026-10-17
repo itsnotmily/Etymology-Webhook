@@ -12,6 +12,7 @@ async function getWordOfTheDay() {
     // Extract word details
     const wotd = response.data;
     const wotdWord = wotd.word.charAt(0).toUpperCase() + wotd.word.slice(1); // Capitalize word
+    const wotdPartOfSpeech = wotd.meanings[0].partOfSpeech; // part of speech
     const wotdGloss1 = wotd.meanings[0].senses[0].glosses[0]; // glossary 1
     const wotdGloss2 = wotd.meanings[0].senses[1].glosses[0]; // glossary 2
     const wotdExamples = wotd.meanings[0].senses[0].examples[0]; // example sentence
@@ -22,7 +23,7 @@ async function getWordOfTheDay() {
       content: `🎨 Today's word is **${wotdWord}**!`,
       embeds: [
         {
-          title: `Meet ${wotdWord}!`,
+          title: `${wotdWord}!`,
           description: `
           **Meaning 1**: ${wotdGloss1}
           \n\n

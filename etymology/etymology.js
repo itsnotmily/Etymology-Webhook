@@ -23,9 +23,9 @@ async function getWordOfTheDay() {
       content: ``,
       embeds: [
         {
-          title: `📝Today's Word is ${wotdWord}!`,
+          title: `📝 Today's Word is ${wotdWord}!`,
           description: `
-          **Part of Speech**: ${wotdPartOfSpeech}
+          \n**Part of Speech**: ${wotdPartOfSpeech}
           
           **Meaning 1**: ${wotdGloss1}
           

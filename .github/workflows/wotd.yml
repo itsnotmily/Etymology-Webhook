@@ -29,13 +29,3 @@ jobs:
       env:
         DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
       run: node etymology/etymology.js
-      
-    - name: Ping CronSignal
-      if: always()
-      uses: CronSignal/ping-action@v1
-      env:
-        JOB_STATUS: ${{ job.status }}
-      with:
-        check-id: ${{ secrets.CRONSIGNAL_CHECK_ID }}
-        ping-on-failure: fail
-

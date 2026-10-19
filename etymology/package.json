@@ -1,12 +1,12 @@
 {
-  "name": "pokemon-discord-notification",
+  "name": "etymology-discord-notification",
   "version": "1.0.0",
-  "description": "A script to fetch a random Pokémon from PokeAPI and send it to Discord via webhook.",
-  "main": "pokemon.js",
+  "description": "A script to fetch a word each day and send it to Discord via webhook.",
+  "main": "etymology.js",
   "scripts": {
-    "start": "node pokemon.js"
+    "start": "node etymology.js"
   },
-  "author": "Your Name",
+  "author": "itsnotmily",
   "license": "MIT",
   "dependencies": {
     "axios": "^1.4.0"

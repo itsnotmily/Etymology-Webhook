@@ -11,6 +11,7 @@ async function getWordOfTheDay() {
     
     // Extract word details
     const wotd = response.data;
+    const wotdWord = wotd.word.charAt(0).toUpperCase() + wotd.word.slice(1); // Capitalize word
     const wotdPartOfSpeech = wotd?.meanings?.[0]?.partOfSpeech  ?? "No part of speech available"; // Part of speech
     const wotdGloss1 = wotd?.meanings?.[0]?.senses?.[0]?.glosses?.[0]  ?? "No definition available"; // Glossary 1
     const wotdGloss2 = wotd?.meanings?.[1]?.senses?.[0]?.glosses?.[0]  ?? "No secondary definition available"; // Glossary 2

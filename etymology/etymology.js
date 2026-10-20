@@ -11,12 +11,11 @@ async function getWordOfTheDay() {
     
     // Extract word details
     const wotd = response.data;
-    const wotdWord = wotd.word.charAt(0).toUpperCase() + wotd.word.slice(1); // Capitalize word
-    const wotdPartOfSpeech = wotd.meanings[0].partOfSpeech; // part of speech
-    const wotdGloss1 = wotd.meanings[0].senses[0].glosses[0]; // glossary 1
-    const wotdGloss2 = wotd.meanings[0].senses[1].glosses[0]; // glossary 2
-    const wotdExamples = wotd.meanings[0].senses[0].examples[0]; // example sentence
-    const wotdEtimology = wotd.meanings[0].etymologyText; // etymology
+    const wotdPartOfSpeech = wotd?.meanings?.[0]?.partOfSpeech  ?? "No part of speech available"; // Part of speech
+    const wotdGloss1 = wotd?.meanings?.[0]?.senses?.[0]?.glosses?.[0]  ?? "No definition available"; // Glossary 1
+    const wotdGloss2 = wotd?.meanings?.[1]?.senses?.[0]?.glosses?.[0]  ?? "No secondary definition available"; // Glossary 2
+    const wotdExamples = wotd?.meanings?.[0]?.senses?.[0]?.examples?.[0]  ?? "No example available"; // Example
+    const wotdEtimology = wotd?.meanings?.[0]?.etymologyText  ?? "No etymology available"; // Etymology
 
     // Create the message payload
     const discordPayload = {

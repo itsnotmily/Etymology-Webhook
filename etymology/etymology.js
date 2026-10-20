@@ -15,7 +15,7 @@ async function getWordOfTheDay() {
     const wotdGloss1 = wotd?.meanings?.[0]?.senses?.[0]?.glosses?.[0]  ?? "No definition available"; // Glossary 1
     const wotdGloss2 = wotd?.meanings?.[1]?.senses?.[0]?.glosses?.[0]  ?? "No secondary definition available"; // Glossary 2
     const wotdExamples = wotd?.meanings?.[0]?.senses?.[0]?.examples?.[0]  ?? "No example available"; // Example
-    const wotdEtimology = wotd?.meanings?.[0]?.etymologyText  ?? "No etymology available"; // Etymology
+    const wotdEtymology = wotd?.meanings?.[0]?.etymologyText  ?? "No etymology available"; // Etymology
 
     // Create the message payload
     const discordPayload = {
@@ -32,7 +32,7 @@ async function getWordOfTheDay() {
           
           **Example**: ${wotdExamples}
           
-          **Etymology**: ${wotdEtimology}
+          **Etymology**: ${wotdEtymology}
           `,
           color: 0x1e90ff, // Optional: Embed color in hexadecimal
         },

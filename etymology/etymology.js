@@ -7,7 +7,7 @@ const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL;
 async function getWordOfTheDay() {
   try {
     // Make a request to the dictionary API for the word of the day
-    const response = await axios.get(`https://api.suvankar.cc/dictionaryapi/v1/wordoftheday`);
+    const response = await axios.get(`https://api.suvankar.cc/dictionaryapi/v1/wordoftheday?t=${Date.now()}`);
     
     // Extract word details
     const wotd = response.data;

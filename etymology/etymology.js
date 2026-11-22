@@ -7,35 +7,43 @@ const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL;
 async function getWordOfTheDay() {
   try {
     // Make a request to the dictionary API for the word of the day
-    const response = await axios.get(`https://api.suvankar.cc/dictionaryapi/v1/wordoftheday?t=${Date.now()}`);
+    const response = await axios.get(`https://api.wordnik.com/v4/words.json/wordOfTheDay?api_key=eb3c7d039e95539e45003019f660c2215486f80a7772538fe&t=${Date.now()}`);
     
     // Extract word details
     const wotd = response.data;
-    const wotdWord = wotd.word.charAt(0).toUpperCase() + wotd.word.slice(1); // Capitalize word
-    const wotdPartOfSpeech = wotd?.meanings?.[0]?.partOfSpeech  ?? "No part of speech available"; // Part of speech
-    const wotdGloss1 = wotd?.meanings?.[0]?.senses?.[0]?.glosses?.[0]  ?? "No definition available"; // Glossary 1
-    const wotdGloss2 = wotd?.meanings?.[1]?.senses?.[0]?.glosses?.[0]  ?? "No secondary definition available"; // Glossary 2
-    const wotdExamples = wotd?.meanings?.[0]?.senses?.[0]?.examples?.[0]  ?? "No example available"; // Example
-    const wotdEtymology = wotd?.meanings?.[0]?.etymologyText  ?? "No etymology available"; // Etymology
 
-    // Create the message payload
+    const wotdWord = wotd?.word
+      ? wotd.word.charAt(0).toUpperCase() + wotd.word.slice(1)
+      : 'Unknown';
+
+    const defs = Array.isArray(wotd?.definitions) ? wotd.definitions : [];
+    const partOfSpeech = defs[0]?.partOfSpeech ?? 'Not available';
+
+    const definitionsBlock = defs.length
+      ? defs
+          .slice(0, 2)
+          .map((d, i) => `**Meaning ${defs.length > 1 ? i + 1 : ''}**: ${d.text}`.replace(' :', ':'))
+          .join('\n\n')
+      : '**Meaning**: No definition available';
+
+    const firstExample = wotd?.examples?.[0];
+    const exampleText = firstExample?.text
+      ? `"${firstExample.text}"${firstExample.title ? ` — *${firstExample.title}*` : ''}`
+      : 'No example available';
+
+    const etymology = wotd?.note ?? 'No etymology available';
+
     const discordPayload = {
-      content: ``,
       embeds: [
         {
           title: `📝 Today's Word is ${wotdWord}!`,
-          description: `
-          \n**Part of Speech**: ${wotdPartOfSpeech}
-          
-          **Meaning 1**: ${wotdGloss1}
-          
-          **Meaning 2**: ${wotdGloss2}
-          
-          **Example**: ${wotdExamples}
-          
-          **Etymology**: ${wotdEtymology}
-          `,
-          color: 0x1e90ff, // Optional: Embed color in hexadecimal
+          description: [
+            `**Part of Speech**: ${partOfSpeech}`,
+            definitionsBlock,
+            `**Example**: ${exampleText}`,
+            `**Etymology**: ${etymology}`,
+          ].join('\n\n'),
+          color: 0x1e90ff,
         },
       ],
     };

@@ -33,6 +33,9 @@ async function getWordOfTheDay() {
 
     const etymology = wotd?.note ?? 'No etymology available';
 
+    const translationResponse = await axios.get(`https://api.mymemory.translated.net/?q=${wotdWord}&langpair=en|pt-PT`);
+    const translatedWord = translationResponse.data?.responseData?.translatedText ?? 'No translation available';
+
     const discordPayload = {
       embeds: [
         {
@@ -42,6 +45,7 @@ async function getWordOfTheDay() {
             definitionsBlock,
             `**Example**: ${exampleText}`,
             `**Etymology**: ${etymology}`,
+            `**Translation**: ${translatedWord}`,
           ].join('\n\n'),
           color: 0x1e90ff,
         },

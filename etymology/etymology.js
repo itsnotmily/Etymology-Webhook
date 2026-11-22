@@ -45,7 +45,7 @@ async function getWordOfTheDay() {
             definitionsBlock,
             `**Example**: ${exampleText}`,
             `**Etymology**: ${etymology}`,
-            `**Translation**: ${translatedWord}`,
+            `**Translation to Portuguese**: ${translatedWord}`,
           ].join('\n\n'),
           color: 0x1e90ff,
         },

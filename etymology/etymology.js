@@ -34,6 +34,7 @@ async function getWordOfTheDay() {
     const etymology = wotd?.note ?? 'No etymology available';
 
     const translationResponse = await axios.get(`https://api.mymemory.translated.net/?q=${wotdWord}&langpair=en|pt-PT`);
+    console.log(translationResponse.data);
     const translatedWord = translationResponse.data?.responseData?.translatedText ?? 'No translation available';
 
     const discordPayload = {
